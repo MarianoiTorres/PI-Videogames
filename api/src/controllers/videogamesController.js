@@ -10,7 +10,7 @@ const getAllVg = async () => {
 
     const arrayGamesDb = await Videogame.findAll();
 
-    for (let i = 1; i <= 2; i++) {
+    for (let i = 1; i <= 1; i++) {
         let response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`);
         response.data.results.map(game => {
             arrayGamesApi.push({
@@ -27,8 +27,7 @@ const getAllVg = async () => {
     return [...arrayGamesDb, ...arrayGamesApi];
 }
 
-//-------Traer los juegos por su nombre----------
-
+//-------Traer los juegos por su nombre---------
 const getVgByName = async (name) => {
     let arrayGamesApi = [];
 
@@ -109,7 +108,7 @@ const getVgDB = async (id) => {
 
 
 //-------------Crear un nuevo juego---------------
-const createNewGame = async ({name, description, platform, background_image, released, rating, genre}) => {
+const createNewGame = async ({ name, description, platform, background_image, released, rating, genre }) => {
     //  Verificar que todos los campos estan llenos
     if (!name || !description || !platform || !background_image || !released || !rating || !genre) {
         throw Error('Todos los campos son obligatorios')
@@ -120,7 +119,16 @@ const createNewGame = async ({name, description, platform, background_image, rel
     })
     // Lanzar error en caso de que ya exista
     if (searchName.length !== 0) throw Error('Este juego ya existe!');
-    // Guardar el juego en la DB
+
+    // busca y trae de la tabla genre los generos = genre
+    let getGenreDB = await Genre.findAll({
+        where: {
+            name: genre
+        }
+    });
+    //Verificar si la tabla de generos esta vacia
+    if (getGenreDB.length === 0) throw Error('La tabla de generos esta vacia!')
+    //Guerdar nuevo juego en la DB
     let newVideogame = await Videogame.create({
         name,
         description,
@@ -130,12 +138,7 @@ const createNewGame = async ({name, description, platform, background_image, rel
         rating
     });
 
-    // busca y trae de la tabla genre los generos = genre
-    let getGenreDB = await Genre.findAll({
-        where: {
-            name: genre    //verificar si la tabla de generos esta cargada 
-        }
-    });
+
     await newVideogame.addGenres(getGenreDB);
 
     return newVideogame;
@@ -151,12 +154,12 @@ const getVg = (name) => {
 // -----------Traer juegos por su id---------------------------
 const getVgById = async (id, source) => {
     if (source === 'API') return getVgAPI(id) //API       
-    else return getVgDB(id)
+    else return getVgDB(id) //DB
 }
 
 // ---------------Crear un juego en la DB-----------------
 const createVg = (datos) => {
-    return createNewGame(datos)
+    return createNewGame(datos) // Crear juego
 }
 
 module.exports = {

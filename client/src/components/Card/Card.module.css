@@ -1,0 +1,20 @@
+.image {
+    border-radius: 1em;
+    width: 13em;
+    height: 13em;
+}
+
+
+.name {
+    height: 3.5em;
+    width: 8.7em;
+    text-align: center;
+    font-family: "Courier New",monospace;
+    font-size: 1.15em;
+    color: rgb(255, 255, 255);
+    text-shadow: 0.1em 0.1em 0.3em #000000;
+}
+
+.genres { 
+    color: white;
+}

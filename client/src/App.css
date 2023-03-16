@@ -1,5 +1,18 @@
 .App {
   text-align: center;
+  min-height: 100vh;
+  min-width: 100vw;
+  text-align: center;
+  background-image:  linear-gradient(
+     100deg,
+     rgba(0,0,0,0.7),
+     rgba(0,0,0,0.7)
+ ) 
+ , url('./img/fondo.jpg');
+  background-repeat:no-repeat;
+  background-attachment: fixed;
+  background-size:cover;
+  
 }
 
 .App-logo {

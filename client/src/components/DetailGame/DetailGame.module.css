@@ -1,0 +1,20 @@
+.container {
+
+    display: flex;
+    justify-content: center;
+}
+
+.detail {
+
+    width: 90%;
+    height: 500px;
+}
+
+.info{
+    color: white;
+    font-size: 10px;
+}
+
+.image {
+    width: 500px;
+}
