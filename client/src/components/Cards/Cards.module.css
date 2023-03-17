@@ -7,6 +7,15 @@
     flex-wrap: wrap;
 }
 
+.cardsContainer{
+    margin: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content:center;
+    gap: 1.5em;
+    flex-wrap: wrap;
+}
+
 .cards {
     width: 13em;
     height: 400px;
