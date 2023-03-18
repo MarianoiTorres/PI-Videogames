@@ -8,3 +8,12 @@ label {
     flex-direction: column;
     gap: 15px;
 }
+
+.plataformas {
+    display: flex;
+    justify-content: center;
+    flex-direction:row;
+    border: 1px solid red;
+    width: 200px;
+    color: white;
+}
