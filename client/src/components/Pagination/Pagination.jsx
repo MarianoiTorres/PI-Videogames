@@ -1,10 +1,10 @@
 
 
-const Pagination = ({gamesPerPage, allGames, paginado}) => {
+const Pagination = ({ gamesPerPage, allGames, paginado }) => {
 
     const pageNumbers = []
 
-    for(let i = 0; i < Math.ceil(allGames/gamesPerPage); i++){
+    for (let i = 0; i < Math.ceil(allGames / gamesPerPage); i++) {
         pageNumbers.push(i + 1)
     }
 
@@ -13,8 +13,8 @@ const Pagination = ({gamesPerPage, allGames, paginado}) => {
             <ul>
                 {
                     pageNumbers &&
-                    pageNumbers.map(number => (    
-                            <button onClick={() => paginado(number)}>{number}</button>
+                    pageNumbers.map(number => (
+                        <button onClick={() => paginado(number)}>{number}</button>
                     ))
                 }
             </ul>

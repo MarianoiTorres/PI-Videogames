@@ -8,7 +8,27 @@ const { API_KEY } = process.env;
 const getAllVg = async () => {
     const arrayGamesApi = [];
 
-    const arrayGamesDb = await Videogame.findAll();
+    const arrayGamesDb = await Videogame.findAll({
+        include: {
+            model: Genre,
+            attributes: ["name"],
+            through: {
+                attributes: []
+            }
+        }
+    });
+   const array = arrayGamesDb.map(game => {
+        return {
+            id: game.id,
+            name: game.name,
+            description: game.description,
+            platform: game.platform,
+            background_image: game.background_image,
+            released: game.released,                  // ===> LA FECHA SE MANDA ASII 2024/03/14   ? POSIBLE ERROR
+            rating: game.rating,
+            genres: game.genres.map(genre => genre.name)
+        }
+    })
 
     for (let i = 1; i <= 1; i++) {
         let response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`);
@@ -24,7 +44,7 @@ const getAllVg = async () => {
             });
         });
     };
-    return [...arrayGamesDb, ...arrayGamesApi];
+    return [...array, ...arrayGamesApi];
 }
 
 //-------Traer los juegos por su nombre---------
@@ -69,7 +89,7 @@ const getVgAPI = async (id) => {
         description: getByAPI?.data?.description,  // Solo tiene description si se busca por ID
         platform: getByAPI?.data?.platforms?.map(e => e.platform.name),
         background_image: getByAPI?.data?.background_image,
-        released: getByAPI?.data?.released,             // ===> LA FECHA SE MANDA ASII 2024-03-14  ? POSIBLE ERROR
+        released: getByAPI?.data?.released,        
         rating: getByAPI?.data?.rating,
         genres: getByAPI?.data?.genres?.map((g) => g.name),
     })
@@ -99,7 +119,7 @@ const getVgDB = async (id) => {
         description: getGamesDB.description,
         platform: getGamesDB.platform,
         background_image: getGamesDB.background_image,
-        released: getGamesDB.released,                  // ===> LA FECHA SE MANDA ASII 2024/03/14   ? POSIBLE ERROR
+        released: getGamesDB.released,                
         rating: getGamesDB.rating,
         genres: getGamesDB.genres.map(genre => genre.name)
     })
@@ -135,7 +155,8 @@ const createNewGame = async ({ name, description, platform, background_image, re
         platform,
         background_image,
         released,
-        rating
+        rating : Number(rating),
+        genre
     });
 
 
@@ -158,8 +179,8 @@ const getVgById = async (id, source) => {
 }
 
 // ---------------Crear un juego en la DB-----------------
-const createVg = (datos) => {
-    return createNewGame(datos) // Crear juego
+const createVg = (form) => {
+    return createNewGame(form) // Crear juego
 }
 
 module.exports = {

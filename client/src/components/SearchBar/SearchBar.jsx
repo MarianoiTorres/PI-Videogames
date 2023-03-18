@@ -1,8 +1,8 @@
-import {getGameByName} from '../../redux/actions'
+import { getGameByName } from '../../redux/actions'
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-export default function SearchBar () {
+export default function SearchBar() {
 
     const [game, setGame] = useState('')
 
@@ -14,7 +14,7 @@ export default function SearchBar () {
 
     return (
         <div>
-            <input onChange={onChangeHandler} type="search" placeholder="Name" name="name" value={game}/>
+            <input onChange={onChangeHandler} type="search" placeholder="Name" name="name" value={game} />
             <button onClick={() => dispatch(getGameByName(game))}>Buscar</button>
         </div>
     )

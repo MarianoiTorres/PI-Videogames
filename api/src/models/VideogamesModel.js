@@ -37,15 +37,11 @@ module.exports = (sequelize) => {
       },
       background_image: {
         type: DataTypes.STRING,
-        validate: {
-          isUrl: true
-        }
+
       },
       released: {
         type: DataTypes.STRING,
-        validate: {
-          isDate: true,
-        }
+        // isdate
       },
       rating: {
         type: DataTypes.FLOAT,

@@ -1,4 +1,4 @@
-import { getGamesOrderAlphabetic, getGamesOrderRating, getGenres, getGenresFiltered } from "../../redux/actions"
+import { getGamesFromApiOrDb, getGamesOrderAlphabetic, getGamesOrderRating, getGenres, getGenresFiltered } from "../../redux/actions"
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from "react"
 
@@ -24,14 +24,18 @@ const FilterButtons = () => {
         dispatch(getGamesOrderAlphabetic(event.target.value))
     }
 
-    return(
+    const gamesFromApiOrDb = (event) => {
+        dispatch(getGamesFromApiOrDb(event.target.value))
+    }
+
+    return (
         <div>
             <div>
                 <select onChange={filterByGenre}>
                     <option select disabled>Generos</option>
                     {
                         genres.map(genre => {
-                           return <option value={genre}>{genre}</option>
+                            return <option value={genre}>{genre}</option>
                         })
                     }
                 </select>
@@ -48,6 +52,13 @@ const FilterButtons = () => {
                     <option select disabled>Alphabetic</option>
                     <option value="Ascendente">Ascendente</option>
                     <option value="Descendente">Descendente</option>
+                </select>
+            </div>
+            <div>
+                <select onChange={gamesFromApiOrDb}>
+                    <option select disabled>Origin</option>
+                    <option value="API">API</option>
+                    <option value="DB">DB</option>
                 </select>
             </div>
         </div>

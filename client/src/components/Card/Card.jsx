@@ -8,7 +8,7 @@ const Card = ({ id, name, image, genres }) => {
                 <h2 className={style.name}>{name}</h2>
                 <img className={style.image} src={image} alt={name} />
                 {
-                    genres.map((genre, index) => {
+                    genres?.map((genre, index) => {
                         return <h4 key={index} className={style.genres}>{genre}</h4>
                     })
                 }

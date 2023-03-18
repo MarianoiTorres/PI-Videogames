@@ -6,7 +6,7 @@ import style from './Cards.module.css'
 import Pagination from "../Pagination/Pagination";
 
 const Cards = () => {
-    
+
     const dispatch = useDispatch()
     const allGames = useSelector(state => state.allGames)
     const [currentPage, setCurrentPage] = useState(1)
@@ -20,33 +20,33 @@ const Cards = () => {
     }
 
     useEffect(() => {
-       dispatch(getAllGames()) 
+        dispatch(getAllGames())
     }, [dispatch])
 
     return (
         <div className={style.container}>
             <div className={style.cardsContainer}>
-            {
-                currentGames.map((game, index) => {
-                    return (
-                        <div className={style.cards} key={index}>
-                            <Card
-                            id={game.id}
-                            name={game.name}
-                            image={game.background_image}
-                            genres={game.genres}
-                            />
-                        </div>
-                    )
-                })
-            }
+                {
+                    currentGames.map((game, index) => {
+                        return (
+                            <div className={style.cards} key={index}>
+                                <Card
+                                    id={game.id}
+                                    name={game.name}
+                                    image={game.background_image}
+                                    genres={game.genres}
+                                />
+                            </div>
+                        )
+                    })
+                }
             </div>
             <div>
-            <Pagination
-            gamesPerPage={gamesPerPage}
-            allGames = {allGames.length}
-            paginado = {paginado}
-            />
+                <Pagination
+                    gamesPerPage={gamesPerPage}
+                    allGames={allGames.length}
+                    paginado={paginado}
+                />
             </div>
         </div>
     )
