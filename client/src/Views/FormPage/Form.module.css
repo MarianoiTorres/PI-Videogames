@@ -1,0 +1,20 @@
+.title {
+    color: white;
+    font-family: 'MetalSlug';
+    letter-spacing: 4px;
+    font-size: 40px;
+    text-shadow: 3px 3px 3px black;
+    animation: salto 1s steps(2) infinite;   
+    margin: 0;
+    padding: 15px;
+    padding-top: 40px;
+}
+
+@keyframes salto {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-5px);
+    }
+}

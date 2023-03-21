@@ -1,19 +1,215 @@
 label {
     color: white;
+    font-family: 'MetalSlug';
+    font-size: 20px;
+    text-shadow: 2px 2px 2px black;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 95%;
+    height: 10px;
+    border-radius: 5px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 95%;
+    height: 10px;
+    cursor: pointer;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgb(95, 94, 94);
+    border-radius: 5px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    margin-top: -6px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin-bottom: 20px;
 }
 
 .form {
+    width: 100%;
     display: flex;
     justify-content:center;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    padding: 15px;
+    padding-top: 0;
+}
+
+.inputs{
+    
+    background: none;
+    backdrop-filter: blur(7px);
+    width: 95%;
+    height: 26px;
+    font-size: 15px;
+    border: 2px solid rgb(255, 255, 255);
+    font-family: "MetalSlug";
+    color: white;
+    letter-spacing: 2px;
+
+}
+
+.divs{
+    display: flex;
+    justify-content: left;
+    text-align: left;
+    flex-direction: column-reverse;
+
+    gap: 20px;
+}
+
+.released{
+    background: none;
+    backdrop-filter: blur(7px);
+    width: 95%;
+    height: 26px;
+    font-size: 15px;
+    border: 2px solid rgb(255, 255, 255);
+    font-family: "MetalSlug";
+    color: white;
+    letter-spacing: 2px;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+    background-size: 20px 20px;
+    background-position: center;
+    padding-right: 5px;
+    filter: invert(1) saturate(10000%) hue-rotate(160deg);
+  }
+
+.divRating{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.rating {
+    
+    color: white;
+    font-family: 'MetalSlug';
+    text-align: center;
+    margin: 0;
+}
+
+.description {
+    background: none;
+    backdrop-filter: blur(7px);
+    font-size: 15px;
+    border: 2px solid rgb(255, 255, 255);
+    font-family: "MetalSlug";
+    color: white;
+    letter-spacing: 2px;
+    width: 95%;
+    height: 100px;
+}
+
+.selects {
+    background: none;
+    backdrop-filter: blur(7px);
+    text-align: center;
+    letter-spacing: 3px;
+    width: 95%;
+    height: 30px;
+    font-size: 15px;
+    font-family: "MetalSlug";
+    border: 2px solid rgb(255, 255, 255);
+    background: none;
+    color: white;
+    text-shadow: 1px 1px 1px rgb(255, 255, 255);
+    
+}
+
+.selects:focus,
+.selects:hover {
+    border: 2px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+}
+
+.create {
+    letter-spacing: 3px;
+    width: 140px;
+    height: 36px;
+    font-size: 30px;
+    font-family: "MetalSlug";
+    border: 2px solid rgb(255, 255, 255);
+    background: none;
+    color: white;
+    text-shadow: 0 0 3px #fff, 0 0 1px #fff, 0 0 7px #fff, 0 0 20px #000000, 0 0 20px #000000, 0 0 30px #000000, 0 0 10px #000000, 0 0 40px #000000;    
+}
+
+.create:hover{
+    cursor: pointer;
+    border: 2px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    text-shadow: 0 0 3px #000000, 0 0 1px #000000, 0 0 7px #000000, 0 0 20px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 10px #ffffff, 0 0 40px #ffffff;
+    transition: 0.2s ease-in;
+}
+
+.errores {
+    padding-top: 5px;
+    font-weight: 500;
+    color: red;
+    font-family: 'MetalSlug';
+    text-decoration-line: underline;
+    margin: 0;
+    text-shadow: 1px 1px 1px black;
+    animation: salto 1s steps(2) infinite;   
+}
+
+@keyframes salto {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateX(5px);
+    }
+}
+
+.contPlataformas{
+    display: flex;
+    justify-content: center;
+    width: 95%;
+    padding-top: 5px;
+    gap: 2px;
 }
 
 .plataformas {
-    display: flex;
-    justify-content: center;
-    flex-direction:row;
-    border: 1px solid red;
-    width: 200px;
     color: white;
+    background-color: rgb(105, 97, 78);       
+    font-family: 'MetalSlug';
+    font-size: 15px;
+    height: 30px;
+    margin-right: 4px;
+    text-shadow: 1px 1px 1px black;
+}
+
+.plataformas:hover {
+    background-color: rgb(194, 102, 102);
+    color: red;
+    text-shadow: 1px 1px 1px black;
+    cursor: pointer;
 }

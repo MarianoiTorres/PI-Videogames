@@ -2,15 +2,16 @@ import Cards from "../../components/Cards/Cards"
 import FilterButtons from "../../components/FilterButtons/FilterButtons"
 import style from './Home.module.css'
 
-const Home = () => {
+const Home = (props) => {
+
     return (
-        <div>
-            <h2 className={style.titulo}>AQUI ESTAN LOS JUEGOS</h2>
-            <hr />
-            <h4 className={style.titulo}>botones para filtrar</h4>
-            <FilterButtons />
-            <hr />
-            <Cards />
+        <div className={style.container}>
+            <div className={style.descrip}>
+                <h2 className={style.h2}>Filter by:</h2>
+                <h2 className={style.h2}>Order by:</h2>
+            </div>
+            <FilterButtons allGenres={props.allGenres}/>
+            <Cards allGames={props.allGames} />
         </div>
     )
 }

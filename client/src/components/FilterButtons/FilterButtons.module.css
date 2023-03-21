@@ -1,0 +1,29 @@
+.container {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.selects {
+    text-align: center;
+    letter-spacing: 3px;
+    width: 160px;
+    height: 30px;
+    font-size: 15px;
+    font-family: "MetalSlug";
+    border: 2px solid rgb(255, 255, 255);
+    background: none;
+    color: white;
+    text-shadow: 1px 1px 1px rgb(255, 255, 255);
+    
+}
+
+.selects:focus,
+.selects:hover {
+    border: 2px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+}

@@ -1,14 +1,11 @@
 import { getGamesFromApiOrDb, getGamesOrderAlphabetic, getGamesOrderRating, getGenres, getGenresFiltered } from "../../redux/actions"
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from "react"
+import style from './FilterButtons.module.css'
 
 const FilterButtons = () => {
 
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getGenres())
-    }, [])
 
     const genres = useSelector(state => state.genres)
 
@@ -29,10 +26,11 @@ const FilterButtons = () => {
     }
 
     return (
-        <div>
+        <div className={style.container}>
+
             <div>
-                <select onChange={filterByGenre}>
-                    <option select disabled>Generos</option>
+                <select className={style.selects} onChange={filterByGenre}>
+                    <option select disabled selected>Genres</option>
                     {
                         genres.map(genre => {
                             return <option value={genre}>{genre}</option>
@@ -41,24 +39,24 @@ const FilterButtons = () => {
                 </select>
             </div>
             <div>
-                <select onChange={gameOrderRating}>
-                    <option select disabled>Rating</option>
-                    <option value="Ascendente">Ascendente</option>
-                    <option value="Descendente">Descendente</option>
-                </select>
-            </div>
-            <div>
-                <select onChange={gamesOrderAlphabetic}>
-                    <option select disabled>Alphabetic</option>
-                    <option value="Ascendente">Ascendente</option>
-                    <option value="Descendente">Descendente</option>
-                </select>
-            </div>
-            <div>
-                <select onChange={gamesFromApiOrDb}>
-                    <option select disabled>Origin</option>
+                <select className={style.selects} onChange={gamesFromApiOrDb}>
+                    <option select disabled selected>Origin</option>
                     <option value="API">API</option>
                     <option value="DB">DB</option>
+                </select>
+            </div>
+            <div>
+                <select className={style.selects} onChange={gameOrderRating}>
+                    <option select disabled selected>Rating</option>
+                    <option value="Ascendente">Ascendant</option>
+                    <option value="Descendente">Descendant</option>
+                </select>
+            </div>
+            <div>
+                <select className={style.selects} onChange={gamesOrderAlphabetic}>
+                    <option select disabled selected>A/Z</option>
+                    <option value="Ascendente">Ascendant</option>
+                    <option value="Descendente">Descendant</option>
                 </select>
             </div>
         </div>

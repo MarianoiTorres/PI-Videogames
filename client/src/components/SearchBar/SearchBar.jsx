@@ -1,6 +1,7 @@
 import { getGameByName } from '../../redux/actions'
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import style from './SearchBar.module.css'
 
 export default function SearchBar() {
 
@@ -13,9 +14,9 @@ export default function SearchBar() {
     const dispatch = useDispatch()
 
     return (
-        <div>
-            <input onChange={onChangeHandler} type="search" placeholder="Name" name="name" value={game} />
-            <button onClick={() => dispatch(getGameByName(game))}>Buscar</button>
+        <div className={style.container}>
+            <input autoComplete='off' className={style.input} onChange={onChangeHandler} type="search" placeholder="Name" name="name" value={game} />
+            <button className={style.buttons} onClick={() => dispatch(getGameByName(game))}>Search</button>
         </div>
     )
 }

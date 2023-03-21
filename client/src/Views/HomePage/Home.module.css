@@ -1,3 +1,41 @@
+.descrip {
+    display: flex;
+    justify-content: center;
+    gap: 32.5em;
+    font-family: "MetalSlug";
+    color: white;
+    letter-spacing: 4px;
+    
+}
+
+.h2 {
+    padding-top: 13px;
+    margin: 0;
+    text-shadow: 2px 2px 2px rgb(172, 165, 108);
+    animation: salto 1s steps(2) infinite;   
+}
+
 .titulo{
     color: white;
 }
+
+@keyframes animacion {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes salto {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-5px);
+    }
+  }

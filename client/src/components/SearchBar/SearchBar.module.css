@@ -1,0 +1,56 @@
+.container {
+    display: flex;  
+    align-items: center;
+}
+
+.input::placeholder{
+    color: white;
+}
+
+.input {
+    background: none;
+    backdrop-filter: blur(7px);
+    text-align: center;
+    width: 190px;
+    height: 36px;
+    font-size: 15px;
+    border: 2px solid rgb(255, 255, 255);
+    font-family: "MetalSlug";
+    color: white;
+    letter-spacing: 2px;
+    text-shadow: 0 0 1px #fff, 0 0 1px #fff, 0 0 7px #fff, 0 0 5px #000000, 0 0 5px #000000, 0 0 5px #000000, 0 0 5px #000000, 0 0 5px #000000;
+}
+
+.input:hover{
+    background-color: #fff;
+    color: white;
+    transition: 0.2s ease-in;
+}
+
+.input:hover::placeholder{
+    color: black;
+    text-shadow: 0 0 1px #000000, 0 0 1px #000000, 0 0 1px #000000, 0 0 20px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 10px #ffffff, 0 0 40px #ffffff;
+}
+
+.buttons {
+    margin-left: 10px;
+    letter-spacing: 3px;
+    width: 140px;
+    height: 36px;
+    font-size: 30px;
+    font-family: "MetalSlug";
+    border: 2px solid rgb(255, 255, 255);
+    background: none;
+    color: white;
+    text-shadow: 0 0 3px #fff, 0 0 1px #fff, 0 0 7px #fff, 0 0 20px #000000, 0 0 20px #000000, 0 0 30px #000000, 0 0 10px #000000, 0 0 40px #000000;
+
+}
+
+.buttons:hover{
+    cursor: pointer;
+    border: 2px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    text-shadow: 0 0 3px #000000, 0 0 1px #000000, 0 0 7px #000000, 0 0 20px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 10px #ffffff, 0 0 40px #ffffff;
+    transition: 0.2s ease-in;
+}

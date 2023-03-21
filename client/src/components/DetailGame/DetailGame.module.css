@@ -1,20 +1,71 @@
 .container {
-
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 95%;
+    padding: 25px;
+
+}
+
+.containerDetail{
+    width: 100%;
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
 }
 
 .detail {
-
-    width: 90%;
-    height: 500px;
+    display: flex;
+    flex-direction: row;
 }
 
-.info{
-    color: white;
-    font-size: 10px;
+.imagen {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.informacion {
+    width: 100%;
 }
 
 .image {
-    width: 500px;
+    width: 450px;
+    border-radius: 5px;
+}
+
+.info {
+    color: white;
+    font-family: 'MetalSlug';
+    letter-spacing: 1px;
+}
+
+.name {
+    color: white;
+    font-family: 'MetalSlug';
+    font-size: 30px;
+    letter-spacing: 5px;
+    text-shadow: 2px 2px 2px black;
+    animation: salto 1s steps(2) infinite;   
+}
+
+@keyframes salto {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-5px);
+      color: rgb(0, 255, 0);
+    }
+}
+
+span {
+    letter-spacing: 1px;
+}
+
+b {
+    letter-spacing: 2px;
+    color:white;
+    text-shadow: 2px 2px 2px black;
 }

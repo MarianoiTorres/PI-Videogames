@@ -1,0 +1,31 @@
+.container {
+    padding-bottom: 15px;
+    width:85vw;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.containerButtons {
+    padding: 0;
+    margin: 0;
+}
+
+.buttons {
+    width: 35px;
+    height: 35px;
+    font-family: 'MetalSlug';
+    font-size: 25px;
+    color: white;
+    background: none;
+    border: 2px solid white;
+    backdrop-filter: blur(15px);
+}
+
+.buttons:hover {
+    cursor: pointer;
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+}

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './Cards.module.css'
 import Pagination from "../Pagination/Pagination";
 
-const Cards = () => {
+const Cards = (props) => {
 
     const dispatch = useDispatch()
     const allGames = useSelector(state => state.allGames)
@@ -14,14 +14,9 @@ const Cards = () => {
     const indexOfLastGame = currentPage * gamesPerPage
     const indexOfFirstGame = indexOfLastGame - gamesPerPage
     const currentGames = allGames.slice(indexOfFirstGame, indexOfLastGame)
-
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
-
-    useEffect(() => {
-        dispatch(getAllGames())
-    }, [dispatch])
 
     return (
         <div className={style.container}>
@@ -34,7 +29,8 @@ const Cards = () => {
                                     id={game.id}
                                     name={game.name}
                                     image={game.background_image}
-                                    genres={game.genres}
+                                    genres={game.genres}    
+                                    rating={game.rating}
                                 />
                             </div>
                         )

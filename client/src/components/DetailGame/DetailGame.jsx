@@ -16,22 +16,46 @@ const DetailGame = () => {
     const gameDetail = useSelector(state => state.gameDetail)
     return (
         <div className={style.container}>
-            {
-                gameDetail.map(game => {
-                    return (
-                        <div className={style.detail}>
-                            <h3 className={style.info}>ID: {game.id}</h3>
-                            <h3 className={style.info}>Name: {game.name}</h3>
-                            <img className={style.image} src={game.background_image} alt={game.name} />
-                            <h3 className={style.info}>plataformas: {game.platform}</h3>
-                            <p className={style.info}>description: {game.description}</p>
-                            <h3 className={style.info}>fecha de lanzamiento: {game.released}</h3>
-                            <h3 className={style.info}>rating: {game.rating}</h3>
-                            <h3 className={style.info}>generos: {game.genres}</h3>
-                        </div>
-                    )
-                })
-            }
+            <div className={style.containerDetail}>
+                {
+                    gameDetail.map(game => {
+                        return (
+                            <div className={style.detail}>
+                                <div className={style.imagen}>
+                                    <img className={style.image} src={game.background_image} alt={game.name} />
+                                </div>
+                                <div className={style.informacion}>
+                                    <h3 className={style.name}>{game.name}</h3>
+                                    {
+                                        game.description ? (
+                                            <p
+                                                className={style.info}
+                                                dangerouslySetInnerHTML={{ __html: game.description }}
+                                            ></p>
+                                        ) : (
+                                            <p>"Game detail not found in database"</p>
+                                     )}
+                                    <p className={style.info}><b>Platforms:</b>
+                                    {
+                                      game.platform.map(plataforma => {
+                                        return <span>{plataforma}/ </span>
+                                      }) 
+                                    }</p>
+                                    <p className={style.info}><b>genres:</b>
+                                    {
+                                        game.genres.map(genre => {
+                                            return <span>{genre}/</span>
+                                        })
+                                    }
+                                    </p>
+                                    <p className={style.info}><b>Released:</b> {game.released}</p>
+                                    <p className={style.info}><b>Rating:</b> {game.rating}</p>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         </div>
     )
 }

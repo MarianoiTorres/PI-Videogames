@@ -1,9 +1,10 @@
 import FormCreate from "../../components/FormCreate/FormCreate"
+import style from './Form.module.css'
 
 const Form = () => {
     return (
         <div>
-            <h2>Vista de Form</h2>
+            <h2 className={style.title}>Create a game</h2>
             <FormCreate />
         </div>
     )

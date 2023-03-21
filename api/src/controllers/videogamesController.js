@@ -24,7 +24,7 @@ const getAllVg = async () => {
             description: game.description,
             platform: game.platform,
             background_image: game.background_image,
-            released: game.released,                  // ===> LA FECHA SE MANDA ASII 2024/03/14   ? POSIBLE ERROR
+            released: game.released,
             rating: game.rating,
             genres: game.genres.map(genre => genre.name)
         }
@@ -49,12 +49,33 @@ const getAllVg = async () => {
 
 //-------Traer los juegos por su nombre---------
 const getVgByName = async (name) => {
-    let arrayGamesApi = [];
-
-    const arrayGamesDb = await Videogame.findAll({
-        where: { name: name }
+    
+    const gamesDb = await Videogame.findAll({
+        where: { name: name },
+        include: {
+            model: Genre,
+            attributes: ['name'],
+            through: {
+                attributes: []
+            }
+        }
     })
 
+    const arrayGamesDB = gamesDb.map(game => {
+        return {
+            id: game.id,
+            name: game.name,
+            description: game.description,
+            platform: game.platform,
+            background_image: game.background_image,
+            released: game.released,
+            rating: game.rating,
+            genres: game.genres.map(genre => genre.name)
+        }
+    })
+    
+
+    let arrayGamesApi = [];
     for (let i = 1; i <= 2; i++) {
         let response = await axios.get(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}&page=${i}`);
         response.data.results.map(game => {
@@ -69,10 +90,12 @@ const getVgByName = async (name) => {
             });
         });
     };
-    arrayGamesApi = arrayGamesApi.filter(g => g.name.toLowerCase() === name.toLowerCase() || g.name.toUpperCase() === name.toUpperCase())
 
-    if ([...arrayGamesDb, ...arrayGamesApi].length === 0) throw new Error('El juego ingresado no existe')
-    return [...arrayGamesDb, ...arrayGamesApi];
+    arrayGamesApi = arrayGamesApi.filter(g => g.name.toLowerCase() || g.name.toUpperCase())
+
+    let allGamesByName = [...arrayGamesDB, ...arrayGamesApi].slice(0, 15)  // ----- API +  DB
+    if (allGamesByName.length === 0) throw new Error('El juego ingresado no existe')
+    return allGamesByName;
 }
 
 
@@ -158,7 +181,6 @@ const createNewGame = async ({ name, description, platform, background_image, re
         rating : Number(rating),
         genre
     });
-
 
     await newVideogame.addGenres(getGenreDB);
 

@@ -1,20 +1,76 @@
+.containerCard{
+    text-align: center;
+    margin: 0;
+}
+
+
 .image {
-    border-radius: 1em;
-    width: 13em;
+    width: 100%;
     height: 13em;
+    margin: 0;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 11px 3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 11px 3px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 11px 3px rgba(0,0,0,0.75);
 }
 
 
 .name {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: 0;
+    margin-left: 27px;
     height: 3.5em;
     width: 8.7em;
-    text-align: center;
-    font-family: "Courier New",monospace;
-    font-size: 1.15em;
+    font-family: "MetalSlug";
+    letter-spacing: 2px;
+    font-size: 1.2em;
     color: rgb(255, 255, 255);
-    text-shadow: 0.1em 0.1em 0.3em #000000;
+    text-shadow: 3px 3px 3px black;
+}
+
+.name:hover{
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 3px rgb(172, 165, 108);
+}
+
+.genresContainer{
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3px;
 }
 
 .genres { 
     color: white;
+    font-family: "MetalSlug";
+    margin: 0;
+    letter-spacing: 3px;
 }
+
+.star 
+{
+    width: 15px;
+}
+
+.rating {
+    font-size: 15px;
+    font-family: 'MetalSlug';
+    color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-shadow: 2px 2px 2px black;
+    margin: 0;
+}
+
+.containerStar{
+    display: flex;
+    flex: row;
+    justify-content: left;
+    letter-spacing: 2px;
+}
+

@@ -1,4 +1,4 @@
-
+import style from './Pagination.module.css';
 
 const Pagination = ({ gamesPerPage, allGames, paginado }) => {
 
@@ -9,12 +9,12 @@ const Pagination = ({ gamesPerPage, allGames, paginado }) => {
     }
 
     return (
-        <nav>
-            <ul>
+        <nav className={style.container}>
+            <ul className={style.containerButtons}>
                 {
                     pageNumbers &&
                     pageNumbers.map(number => (
-                        <button onClick={() => paginado(number)}>{number}</button>
+                        <button className={style.buttons} onClick={() => paginado(number)}>{number}</button>
                     ))
                 }
             </ul>

@@ -1,0 +1,40 @@
+
+.navBar {
+    backdrop-filter: blur(7px);
+    padding: 1em;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a {
+    height: 0;
+
+}
+
+.navlink {
+    padding-left: 10px;
+}
+
+.buttons {
+    letter-spacing: 3px;
+    width: 140px;
+    height: 36px;
+    font-size: 30px;
+    font-family: "MetalSlug";
+    border: 2px solid rgb(255, 255, 255);
+    background: none;
+    color: white;
+    text-shadow: 0 0 3px #fff, 0 0 1px #fff, 0 0 7px #fff, 0 0 20px #000000, 0 0 20px #000000, 0 0 30px #000000, 0 0 10px #000000, 0 0 40px #000000;
+
+}
+
+.buttons:hover{
+    cursor: pointer;
+    border: 2px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    text-shadow: 0 0 3px #000000, 0 0 1px #000000, 0 0 7px #000000, 0 0 20px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 10px #ffffff, 0 0 40px #ffffff;
+    transition: 0.2s ease-in;
+}

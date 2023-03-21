@@ -1,0 +1,53 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxButton {
+    animation: animation infinite ease-in-out 2900ms;
+}
+
+.button {
+    width: 550px;
+    height: 120px;
+    font-size: 70px;
+    font-family: "MetalSlug";
+    background: none;
+    color: rgb(255, 255, 255);
+    border: none;
+    letter-spacing: 8px;
+    animation: start infinite steps(1, end) 1800ms;
+    text-shadow: 0 0 3px #fff, 0 0 1px #fff, 0 0 7px #fff, 0 0 20px #000000, 0 0 20px #000000, 0 0 30px #000000, 0 0 10px #000000, 0 0 40px #000000;
+}
+
+.button:hover{
+    cursor: crosshair;
+}
+
+@keyframes start {
+    0% {
+        opacity: 0;
+    }
+    50% {
+    opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+@keyframes animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.09);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
