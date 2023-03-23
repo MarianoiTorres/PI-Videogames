@@ -7,7 +7,7 @@ import {
     GET_GENRES,
     GET_GENRES_FILTERED,
     GET_GAMES_FROM_API_OR_DB,
-    GET_PLATFORMS, 
+    GET_PLATFORMS,
 } from "./actionsTypes"
 
 const initialState = {
@@ -52,6 +52,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 allGames: state.allGamesToFilter.filter(game => game.genres.includes(action.payload))
             }
+        // Ordenar por rating
         case GET_GAMES_ORDER_RATING:
             if (action.payload === 'Ascendente') {
                 return {
@@ -65,7 +66,7 @@ const reducer = (state = initialState, action) => {
                     allGames: [...state.allGames.sort((a, b) => b.rating - a.rating)]
                 }
             }
-
+        // Ordenar alfabeticamente
         case GET_GAMES_ORDER_ALPHABETIC:
             if (action.payload === 'Ascendente') {
                 return {
@@ -79,25 +80,26 @@ const reducer = (state = initialState, action) => {
                     allGames: [...state.allGames.sort((a, b) => b.name.localeCompare(a.name))]
                 }
             }
-
+        // Filtrar juegos por si es de la API o la DB
         case GET_GAMES_FROM_API_OR_DB:
             if (action.payload === 'API') {
                 return {
                     ...state,
                     allGames: state.allGamesToFilter.filter(game => !isNaN(game.id))
                 }
-            } else if(action.payload === 'DB') {
+            } else if (action.payload === 'DB') {
                 return {
                     ...state,
                     allGames: state.allGamesToFilter.filter(game => isNaN(game.id))
                 }
             }
-            else{
+            else {
                 return {
-                    ...state, 
+                    ...state,
                     allGames: state.allGamesToFilter.map(g => g)
                 }
             }
+        // Llenar el estado global de plataformas
         case GET_PLATFORMS:
             let platforms = []
             state.allGamesToFilter.map(game =>

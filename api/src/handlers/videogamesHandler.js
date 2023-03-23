@@ -11,6 +11,7 @@ const getVideogames = async (req, res) => {
     }
 }
 
+// traer juegos por id
 const getVideogameById = async (req, res) => {
     const { idVideogame } = req.params;
     const source = isNaN(idVideogame) ? 'DB' : 'API';
@@ -22,10 +23,11 @@ const getVideogameById = async (req, res) => {
     }
 }
 
+// crear juego
 const postVideogame = async (req, res) => {
     const { name, description, platform, background_image, released, rating, genre } = req.body;
     try {
-        const newGame = await createVg({name, description, platform, background_image, released, rating, genre});
+        const newGame = await createVg({ name, description, platform, background_image, released, rating, genre });
         res.status(200).json(newGame);
     } catch (error) {
         res.status(400).json({ error: error.message });

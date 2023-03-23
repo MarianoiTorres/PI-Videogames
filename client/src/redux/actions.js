@@ -11,7 +11,7 @@ import {
     GET_PLATFORMS
 } from "./actionsTypes";
 
-
+// action traer todos los juegos
 export const getAllGames = () => {
     try {
         return async (dispatch) => {
@@ -24,6 +24,7 @@ export const getAllGames = () => {
     }
 }
 
+// action traer juegos por nombres
 export const getGameByName = (name) => {
     try {
         return async (dispatch) => {
@@ -36,6 +37,7 @@ export const getGameByName = (name) => {
     }
 }
 
+// action traer juegos por id
 export const getGameById = (idVideogame) => {
     try {
         return async (dispatch) => {
@@ -48,6 +50,7 @@ export const getGameById = (idVideogame) => {
     }
 }
 
+// action traer los generos
 export const getGenres = () => {
     try {
         return async (dispatch) => {
@@ -60,22 +63,27 @@ export const getGenres = () => {
     }
 }
 
+// action traer generos filtrados
 export const getGenresFiltered = (genre) => {
     return { type: GET_GENRES_FILTERED, payload: genre }
 }
 
+// cation ordenar por rating
 export const getGamesOrderRating = (value) => {
     return { type: GET_GAMES_ORDER_RATING, payload: value }
 }
 
+// action ordenar alfabeticamente
 export const getGamesOrderAlphabetic = (value) => {
     return { type: GET_GAMES_ORDER_ALPHABETIC, payload: value }
 }
 
+// action filtrar por origen de api o db
 export const getGamesFromApiOrDb = (value) => {
     return { type: GET_GAMES_FROM_API_OR_DB, payload: value }
 }
 
+// action para filtrar todas las plataformas
 export const getPlatforms = () => {
     return { type: GET_PLATFORMS }
 }

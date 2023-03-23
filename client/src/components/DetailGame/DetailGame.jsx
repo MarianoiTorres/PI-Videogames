@@ -9,6 +9,7 @@ const DetailGame = () => {
     const { idVideogame } = useParams()
     const dispatch = useDispatch()
 
+    // cada vez que el id cambie se cambia el estado global de detail
     useEffect(() => {
         dispatch(getGameById(idVideogame))
     }, [idVideogame])
@@ -34,19 +35,19 @@ const DetailGame = () => {
                                             ></p>
                                         ) : (
                                             <p>"Game detail not found in database"</p>
-                                     )}
+                                        )}
                                     <p className={style.info}><b>Platforms:</b>
-                                    {
-                                      game.platform.map(plataforma => {
-                                        return <span>{plataforma}/ </span>
-                                      }) 
-                                    }</p>
+                                        {
+                                            game.platform.map(plataforma => {
+                                                return <span>{plataforma}/ </span>
+                                            })
+                                        }</p>
                                     <p className={style.info}><b>genres:</b>
-                                    {
-                                        game.genres.map(genre => {
-                                            return <span>{genre}/</span>
-                                        })
-                                    }
+                                        {
+                                            game.genres.map(genre => {
+                                                return <span>{genre}/</span>
+                                            })
+                                        }
                                     </p>
                                     <p className={style.info}><b>Released:</b> {game.released}</p>
                                     <p className={style.info}><b>Rating:</b> {game.rating}</p>

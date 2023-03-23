@@ -7,6 +7,7 @@ import validation from './validation'
 
 const FormCreate = () => {
     const dispatch = useDispatch()
+    // estado para controlar cada cambio de los inputs del formulario
     const [form, setForm] = useState({
         name: '',
         description: '',
@@ -16,18 +17,21 @@ const FormCreate = () => {
         rating: '',
         genre: []
     })
-
+    // estado para controlar los errores
     const [errors, setErrors] = useState({})
-
+    // cuando se levante el componente se cargan todas las plataformas
     useEffect(() => {
         dispatch(getPlatforms())
     }, [])
 
+
     const onChangeHandler = (event) => {
+        //cambia el valor del estado form dependiendo del input que se seleccione
         setForm({
             ...form,
             [event.target.name]: event.target.value
         })
+        // valida que no haya errores en cada cambio del input
         setErrors({
             ...errors,
             [event.target.name]: validation({ [event.target.name]: event.target.value })
@@ -35,11 +39,14 @@ const FormCreate = () => {
     }
 
     const genresAndPlatformsHandler = (event) => {
+        // controlo que la plataforma seleccionada no este en el form
         if (!form[event.target.name].includes(event.target.value)) {
+            // si no esta le sumo la nueva plataforma al array de plataformas
             setForm({
                 ...form,
                 [event.target.name]: [...form[event.target.name], event.target.value]
             })
+            // valido los posibles errores de plataformas y generos (que no esten vacios)
             setErrors({
                 ...errors,
                 [event.target.name]: validation({ [event.target.name]: [...form[event.target.name], event.target.value] })
@@ -47,21 +54,24 @@ const FormCreate = () => {
         }
     }
 
+
     const genres = useSelector(state => state.genres)
     const platforms = useSelector(state => state.platforms)
 
-
+    // creo un estado para controlar los errores que llegan del backend
     const [errorsBack, setErrorsBack] = useState(null)
+
     const submitHandler = (event) => {
         event.preventDefault()
         let err = []
+        //valido que no haya ningun error antes de submitear
         Object.values(errors).map((elemento) => {
             if (elemento !== '') {
                 err.push(elemento)
             }
 
         })
-
+        // si es = 0 es porque no hay ningun error
         if (err.length === 0) {
             axios.post('http://localhost:3001/videogames', form)
                 .then(res => {
@@ -76,11 +86,11 @@ const FormCreate = () => {
                         genre: []
                     })
                     dispatch(getAllGames())
-                    setErrorsBack(null)
+                    setErrorsBack(null) // limpio el estado de errores del back
                 }
                 )
                 .catch(err => {
-                    setErrorsBack(err.response.data.error)
+                    setErrorsBack(err.response.data.error) //seteo el estado de errores del back con el error que llego
                 }
                 )
         }
@@ -90,16 +100,20 @@ const FormCreate = () => {
 
     }
 
+    // borrar las plataformas seleccionadas
     const deleteHandler = (event) => {
+        // busco el indice de donde esta la plataforma/genero seleccionada
         let index = form[event.target.name].indexOf(event.target.value)
+        // la elimino del estado form
         form[event.target.name].splice(index, 1)
         setForm({
             ...form,
-            [event.target.name]: form[event.target.name]
+            [event.target.name]: form[event.target.name] // seteo el estado con el array con la plataforma/genero ya eliminado
         })
         setErrors({
             ...errors,
             [event.target.name]: validation({ [event.target.name]: form[event.target.name] })
+            // valido que haya por lo menos una plataforma/genero
         })
     }
 
@@ -109,7 +123,7 @@ const FormCreate = () => {
             <div className={style.containerForm}>
                 <form className={style.form} onSubmit={submitHandler}>
                     <div>
-                       { errorsBack && <div className={style.errorsBack}> {errorsBack} </div>}
+                        {errorsBack && <div className={style.errorsBack}> {errorsBack} </div>}
                     </div>
                     <div className={style.divs}>
                         <div>

@@ -7,7 +7,6 @@ import Pagination from "../Pagination/Pagination";
 
 const Cards = () => {
 
-    const dispatch = useDispatch()
     const allGames = useSelector(state => state.allGames)
     const [currentPage, setCurrentPage] = useState(1)
     const [gamesPerPage, setGamesPerPage] = useState(15)
@@ -24,6 +23,7 @@ const Cards = () => {
         pageNumbers.push(i)
     }
 
+    // handler para las flechas de prev y next
     const clickHandler = (event) => {
         if (event.target.name === 'prev') {
             if (currentPage - 1 === 0) return

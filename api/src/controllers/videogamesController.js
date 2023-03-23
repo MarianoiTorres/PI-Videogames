@@ -6,8 +6,8 @@ const { API_KEY } = process.env;
 
 //--------Traer todos los juegos------
 const getAllVg = async () => {
-    const arrayGamesApi = [];
-
+    
+    // traigo los juegos de la db (incluyendo su relacion)
     const arrayGamesDb = await Videogame.findAll({
         include: {
             model: Genre,
@@ -17,9 +17,8 @@ const getAllVg = async () => {
             }
         }
     });
-
-    
-   const array = arrayGamesDb.map(game => {
+    // mapeo lo que llego de la db
+    const array = arrayGamesDb.map(game => {
         return {
             id: game.id,
             name: game.name,
@@ -31,9 +30,12 @@ const getAllVg = async () => {
             genres: game.genres.map(genre => genre.name)
         }
     })
-
+    
+    // traigo los juegos de la api
+    const arrayGamesApi = [];
     for (let i = 1; i <= 1; i++) {
         let response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`);
+        // mapeo y pusheo cada juego
         response.data.results.map(game => {
             arrayGamesApi.push({
                 id: game.id,
@@ -46,12 +48,13 @@ const getAllVg = async () => {
             });
         });
     };
+    // concateno lo de la db y la api
     return [...array, ...arrayGamesApi];
 }
 
 //-------Traer los juegos por su nombre---------
 const getVgByName = async (name) => {
-    
+    // busco en la db por nombre
     const gamesDb = await Videogame.findAll({
         where: { name: name },
         include: {
@@ -75,7 +78,7 @@ const getVgByName = async (name) => {
             genres: game.genres.map(genre => genre.name)
         }
     })
-    
+
 
     let arrayGamesApi = [];
     for (let i = 1; i <= 2; i++) {
@@ -114,7 +117,7 @@ const getVgAPI = async (id) => {
         description: getByAPI?.data?.description,  // Solo tiene description si se busca por ID
         platform: getByAPI?.data?.platforms?.map(e => e.platform.name),
         background_image: getByAPI?.data?.background_image,
-        released: getByAPI?.data?.released,        
+        released: getByAPI?.data?.released,
         rating: getByAPI?.data?.rating,
         genres: getByAPI?.data?.genres?.map((g) => g.name),
     })
@@ -144,7 +147,7 @@ const getVgDB = async (id) => {
         description: getGamesDB.description,
         platform: getGamesDB.platform,
         background_image: getGamesDB.background_image,
-        released: getGamesDB.released,                
+        released: getGamesDB.released,
         rating: getGamesDB.rating,
         genres: getGamesDB.genres.map(genre => genre.name)
     })
@@ -180,7 +183,7 @@ const createNewGame = async ({ name, description, platform, background_image, re
         platform,
         background_image,
         released,
-        rating : Number(rating),
+        rating: Number(rating),
         genre
     });
 

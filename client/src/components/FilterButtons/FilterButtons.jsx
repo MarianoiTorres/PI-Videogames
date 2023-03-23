@@ -9,18 +9,19 @@ const FilterButtons = () => {
 
     const genres = useSelector(state => state.genres)
 
+    // action para filtrar por generos
     const filterByGenre = (event) => {
         dispatch(getGenresFiltered(event.target.value))
     }
-
+    // action para ordenar por rating
     const gameOrderRating = (event) => {
         dispatch(getGamesOrderRating(event.target.value))
     }
-
+    // action para ordenar alfabeticamente
     const gamesOrderAlphabetic = (event) => {
         dispatch(getGamesOrderAlphabetic(event.target.value))
     }
-
+    // action para filtrar por origen de api o db
     const gamesFromApiOrDb = (event) => {
         dispatch(getGamesFromApiOrDb(event.target.value))
     }
