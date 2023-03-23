@@ -6,7 +6,7 @@ const { API_KEY } = process.env;
 
 //--------Traer todos los juegos------
 const getAllVg = async () => {
-    
+
     // traigo los juegos de la db (incluyendo su relacion)
     const arrayGamesDb = await Videogame.findAll({
         include: {
@@ -30,10 +30,10 @@ const getAllVg = async () => {
             genres: game.genres.map(genre => genre.name)
         }
     })
-    
+
     // traigo los juegos de la api
     const arrayGamesApi = [];
-    for (let i = 1; i <= 1; i++) {
+    for (let i = 1; i <= 2; i++) {
         let response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`);
         // mapeo y pusheo cada juego
         response.data.results.map(game => {
@@ -54,53 +54,58 @@ const getAllVg = async () => {
 
 //-------Traer los juegos por su nombre---------
 const getVgByName = async (name) => {
-    // busco en la db por nombre
-    const gamesDb = await Videogame.findAll({
-        where: { name: name },
-        include: {
-            model: Genre,
-            attributes: ['name'],
-            through: {
-                attributes: []
+    try {
+        // busco en la db por nombre
+        const gamesDb = await Videogame.findAll({
+            where: { name: name },
+            include: {
+                model: Genre,
+                attributes: ['name'],
+                through: {
+                    attributes: []
+                }
             }
-        }
-    })
+        })
 
-    const arrayGamesDB = gamesDb.map(game => {
-        return {
-            id: game.id,
-            name: game.name,
-            description: game.description,
-            platform: game.platform,
-            background_image: game.background_image,
-            released: game.released,
-            rating: game.rating,
-            genres: game.genres.map(genre => genre.name)
-        }
-    })
-
-
-    let arrayGamesApi = [];
-    for (let i = 1; i <= 2; i++) {
-        let response = await axios.get(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}&page=${i}`);
-        response.data.results.map(game => {
-            arrayGamesApi.push({
+        const arrayGamesDB = gamesDb.map(game => {
+            return {
                 id: game.id,
                 name: game.name,
-                platform: game.platforms.map(e => e.platform.name), // LO MISMO DE ARRIBA
+                description: game.description,
+                platform: game.platform,
                 background_image: game.background_image,
                 released: game.released,
                 rating: game.rating,
-                genres: game.genres.map(g => g.name)
+                genres: game.genres.map(genre => genre.name)
+            }
+        })
+
+
+        let arrayGamesApi = [];
+        for (let i = 1; i <= 2; i++) {
+            let response = await axios.get(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}&page=${i}`);
+            response.data.results.map(game => {
+                arrayGamesApi.push({
+                    id: game.id,
+                    name: game.name,
+                    platform: game.platforms.map(e => e.platform.name), // LO MISMO DE ARRIBA
+                    background_image: game.background_image,
+                    released: game.released,
+                    rating: game.rating,
+                    genres: game.genres.map(g => g.name)
+                });
             });
-        });
-    };
+        };
 
-    arrayGamesApi = arrayGamesApi.filter(g => g.name.toLowerCase() || g.name.toUpperCase())
+        arrayGamesApi = arrayGamesApi.filter(g => g.name.toLowerCase() || g.name.toUpperCase())
 
-    let allGamesByName = [...arrayGamesDB, ...arrayGamesApi].slice(0, 15)  // ----- API +  DB
-    if (allGamesByName.length === 0) throw new Error('El juego ingresado no existe')
-    return allGamesByName;
+        let allGamesByName = [...arrayGamesDB, ...arrayGamesApi].slice(0, 15)  // ----- API +  DB
+        return allGamesByName;
+    } catch (error) {
+        throw Error('El juego ingresado no existe')
+    }
+
+
 }
 
 

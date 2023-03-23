@@ -8,6 +8,7 @@ import {
     GET_GENRES_FILTERED,
     GET_GAMES_FROM_API_OR_DB,
     GET_PLATFORMS,
+    FETCHED_ERRORS
 } from "./actionsTypes"
 
 const initialState = {
@@ -50,7 +51,7 @@ const reducer = (state = initialState, action) => {
         case GET_GENRES_FILTERED:
             return {
                 ...state,
-                allGames: state.allGamesToFilter.filter(game => game.genres.includes(action.payload))
+                allGames: [...state.allGamesToFilter.filter(game => game.genres.includes(action.payload))]
             }
         // Ordenar por rating
         case GET_GAMES_ORDER_RATING:
@@ -85,12 +86,12 @@ const reducer = (state = initialState, action) => {
             if (action.payload === 'API') {
                 return {
                     ...state,
-                    allGames: state.allGamesToFilter.filter(game => !isNaN(game.id))
+                    allGames: [...state.allGamesToFilter.filter(game => !isNaN(game.id))]
                 }
             } else if (action.payload === 'DB') {
                 return {
                     ...state,
-                    allGames: state.allGamesToFilter.filter(game => isNaN(game.id))
+                    allGames: [...state.allGamesToFilter.filter(game => isNaN(game.id))]
                 }
             }
             else {
@@ -112,6 +113,13 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 platforms: platforms
+            }
+
+        case FETCHED_ERRORS:
+            return {
+                ...state,
+                allGames: [],
+                errors: action.payload
             }
 
         default: return { ...state }

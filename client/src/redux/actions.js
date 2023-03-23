@@ -8,7 +8,8 @@ import {
     GET_GAMES_ORDER_RATING,
     GET_GAMES_ORDER_ALPHABETIC,
     GET_GAMES_FROM_API_OR_DB,
-    GET_PLATFORMS
+    GET_PLATFORMS,
+    FETCHED_ERRORS
 } from "./actionsTypes";
 
 // action traer todos los juegos
@@ -25,15 +26,13 @@ export const getAllGames = () => {
 }
 
 // action traer juegos por nombres
-export const getGameByName = (name) => {
+export const getGameByName = (name) => async(dispatch) => {
     try {
-        return async (dispatch) => {
-            const response = await axios.get(`http://localhost:3001/videogames?name=${name}`)
-            const data = response.data
-            return dispatch({ type: GET_GAME_BY_NAME, payload: data })
-        }
+        const response = await axios.get(`http://localhost:3001/videogames?name=${name}`)
+        const data = response.data
+        return dispatch({ type: GET_GAME_BY_NAME, payload: data })
     } catch (error) {
-        console.log(error)
+        dispatch ({type: FETCHED_ERRORS, payload: error.response.data.error})
     }
 }
 
