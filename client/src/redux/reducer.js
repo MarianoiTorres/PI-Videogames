@@ -7,7 +7,7 @@ import {
     GET_GENRES,
     GET_GENRES_FILTERED,
     GET_GAMES_FROM_API_OR_DB,
-    GET_PLATFORMS
+    GET_PLATFORMS, 
 } from "./actionsTypes"
 
 const initialState = {
@@ -15,7 +15,8 @@ const initialState = {
     allGamesToFilter: [],
     gameDetail: [],
     genres: [],
-    platforms: []
+    platforms: [],
+    errors: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -85,13 +86,18 @@ const reducer = (state = initialState, action) => {
                     ...state,
                     allGames: state.allGamesToFilter.filter(game => !isNaN(game.id))
                 }
-            } else {
+            } else if(action.payload === 'DB') {
                 return {
                     ...state,
                     allGames: state.allGamesToFilter.filter(game => isNaN(game.id))
                 }
             }
-
+            else{
+                return {
+                    ...state, 
+                    allGames: state.allGamesToFilter.map(g => g)
+                }
+            }
         case GET_PLATFORMS:
             let platforms = []
             state.allGamesToFilter.map(game =>

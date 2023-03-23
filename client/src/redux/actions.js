@@ -20,7 +20,7 @@ export const getAllGames = () => {
             return dispatch({ type: GET_ALL_GAMES, payload: data })
         }
     } catch (error) {
-        console.log('error al traer los juegos de la api')
+        console.log(error)
     }
 }
 
@@ -32,7 +32,7 @@ export const getGameByName = (name) => {
             return dispatch({ type: GET_GAME_BY_NAME, payload: data })
         }
     } catch (error) {
-        console.log('error al filtrar el juego')
+        console.log(error)
     }
 }
 
@@ -41,11 +41,10 @@ export const getGameById = (idVideogame) => {
         return async (dispatch) => {
             const response = await axios.get(`http://localhost:3001/videogames/${idVideogame}`)
             const data = response.data
-            console.log(data)
             return dispatch({ type: GET_GAME_BY_ID, payload: data })
         }
     } catch (error) {
-        console.log('error al filtrar por id')
+        console.log(error)
     }
 }
 
@@ -54,11 +53,10 @@ export const getGenres = () => {
         return async (dispatch) => {
             const response = await axios.get('http://localhost:3001/genres')
             const data = response.data
-            console.log(data) //x
             return dispatch({ type: GET_GENRES, payload: data })
         }
     } catch (error) {
-
+        console.log(error)
     }
 }
 

@@ -1,6 +1,6 @@
 .container {
-    padding-bottom: 15px;
-    width:85vw;
+    
+    width:fit-content;
     height: 45px;
     display: flex;
     justify-content: center;
@@ -28,4 +28,16 @@
     border: 2px solid black;
     background-color: white;
     color: black;
+}
+
+.current{
+    width: 35px;
+    height: 35px;
+    font-family: 'MetalSlug';
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    background: none;
+    border: 2px solid white;
+    text-shadow: 2px 2px 1px rgb(255, 0, 0);
+    backdrop-filter: blur(15px);
 }

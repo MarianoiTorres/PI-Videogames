@@ -2,7 +2,7 @@ import axios from 'axios'
 import style from './FormCreate.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { getPlatforms } from '../../redux/actions'
+import { getAllGames, getPlatforms } from '../../redux/actions'
 import validation from './validation'
 
 const FormCreate = () => {
@@ -50,6 +50,8 @@ const FormCreate = () => {
     const genres = useSelector(state => state.genres)
     const platforms = useSelector(state => state.platforms)
 
+
+    const [errorsBack, setErrorsBack] = useState(null)
     const submitHandler = (event) => {
         event.preventDefault()
         let err = []
@@ -63,7 +65,7 @@ const FormCreate = () => {
         if (err.length === 0) {
             axios.post('http://localhost:3001/videogames', form)
                 .then(res => {
-                    alert(res)
+                    alert('Juego creado con exito :D')
                     setForm({
                         name: '',
                         description: '',
@@ -73,12 +75,17 @@ const FormCreate = () => {
                         rating: '',
                         genre: []
                     })
+                    dispatch(getAllGames())
+                    setErrorsBack(null)
                 }
                 )
-                .catch(err => alert(err))
+                .catch(err => {
+                    setErrorsBack(err.response.data.error)
+                }
+                )
         }
         else {
-            alert('necesita completar todos los campos')
+            setErrorsBack('Todos los campos son obligatorios!')
         }
 
     }
@@ -100,10 +107,9 @@ const FormCreate = () => {
     return (
         <div className={style.container}>
             <div className={style.containerForm}>
-
                 <form className={style.form} onSubmit={submitHandler}>
                     <div>
-
+                       { errorsBack && <div className={style.errorsBack}> {errorsBack} </div>}
                     </div>
                     <div className={style.divs}>
                         <div>
@@ -135,14 +141,14 @@ const FormCreate = () => {
                                 <option select disabled selected>Platforms</option>
                                 {
                                     platforms.map(platform => {
-                                        return <option name={platform} value={platform} >{platform}</option>
+                                        return <option key={platform} name={platform} value={platform} >{platform}</option>
                                     })
                                 }
                             </select>
                             <div className={style.contPlataformas}>
                                 {
                                     form.platform.map(plat => {
-                                        return <button className={style.plataformas} type='button' name='platform' value={plat} onClick={deleteHandler}>{plat}</button>
+                                        return <button key={plat} className={style.plataformas} type='button' name='platform' value={plat} onClick={deleteHandler}>{plat}</button>
                                     })
                                 }
                             </div>
@@ -174,14 +180,14 @@ const FormCreate = () => {
                                 <option select disabled selected>Genres</option>
                                 {
                                     genres.map(genre => {
-                                        return <option name={genre} value={genre} >{genre}</option>
+                                        return <option key={genre} name={genre} value={genre} >{genre}</option>
                                     })
                                 }
                             </select>
-                            <div className={style.contPlataformas} J>
+                            <div className={style.contPlataformas}>
                                 {
                                     form.genre.map(gen => {
-                                        return <button name='genre' value={gen} type='button' className={style.plataformas} onClick={deleteHandler}>{gen}</button>
+                                        return <button key={gen} name='genre' value={gen} type='button' className={style.plataformas} onClick={deleteHandler}>{gen}</button>
                                     })
                                 }
                             </div>

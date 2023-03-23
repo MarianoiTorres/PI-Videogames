@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './Cards.module.css'
 import Pagination from "../Pagination/Pagination";
 
-const Cards = (props) => {
+const Cards = () => {
 
     const dispatch = useDispatch()
     const allGames = useSelector(state => state.allGames)
@@ -16,6 +16,23 @@ const Cards = (props) => {
     const currentGames = allGames.slice(indexOfFirstGame, indexOfLastGame)
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
+    }
+
+    // solo para saber la cantidad de paginas en este componente
+    const pageNumbers = []
+    for (let i = 0; i < Math.ceil(allGames.length / gamesPerPage); i++) {
+        pageNumbers.push(i)
+    }
+
+    const clickHandler = (event) => {
+        if (event.target.name === 'prev') {
+            if (currentPage - 1 === 0) return
+            setCurrentPage(currentPage - 1)
+        }
+        else {
+            if (currentPage + 1 === pageNumbers.length + 1) return
+            setCurrentPage(currentPage + 1)
+        }
     }
 
     return (
@@ -29,7 +46,7 @@ const Cards = (props) => {
                                     id={game.id}
                                     name={game.name}
                                     image={game.background_image}
-                                    genres={game.genres}    
+                                    genres={game.genres}
                                     rating={game.rating}
                                 />
                             </div>
@@ -37,12 +54,16 @@ const Cards = (props) => {
                     })
                 }
             </div>
-            <div>
+            <div className={style.containerButtons}>
+                {currentGames.length !== 0 && <button className={style.buttons} name="prev" onClick={clickHandler}>←</button>}
                 <Pagination
                     gamesPerPage={gamesPerPage}
                     allGames={allGames.length}
                     paginado={paginado}
+                    currentPage={currentPage}
                 />
+                {currentGames.length !== 0 && <button className={style.buttons} name="next" onClick={clickHandler}>→</button>}
+                {currentGames.length === 0 && <div className={style.ningunJuego}>Sorry, no games were found that match your search</div>}
             </div>
         </div>
     )

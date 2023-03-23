@@ -213,3 +213,22 @@ input[type='date']::-webkit-calendar-picker-indicator {
     text-shadow: 1px 1px 1px black;
     cursor: pointer;
 }
+
+.errorsBack {
+    font-family: 'MetalSlug';
+    font-size: 30px;
+    color: red;
+    text-shadow: 2px 2px 1px black;
+    animation: errorbackend 1s steps(2) infinite;   
+    letter-spacing: 2px;
+    margin-left: 6px;
+}
+
+@keyframes errorbackend {
+    from {
+      text-decoration: none;
+    }
+    to {
+      text-decoration:underline;
+    }
+}

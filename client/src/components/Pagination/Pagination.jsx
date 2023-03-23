@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import style from './Pagination.module.css';
 
-const Pagination = ({ gamesPerPage, allGames, paginado }) => {
+const Pagination = ({ gamesPerPage, allGames, paginado, currentPage }) => {
 
     const pageNumbers = []
 
@@ -8,13 +9,14 @@ const Pagination = ({ gamesPerPage, allGames, paginado }) => {
         pageNumbers.push(i + 1)
     }
 
+
     return (
         <nav className={style.container}>
             <ul className={style.containerButtons}>
                 {
                     pageNumbers &&
                     pageNumbers.map(number => (
-                        <button className={style.buttons} onClick={() => paginado(number)}>{number}</button>
+                        <button key={number} className={currentPage === number ? style.current : style.buttons } onClick={() => paginado(number)}>{number}</button>
                     ))
                 }
             </ul>

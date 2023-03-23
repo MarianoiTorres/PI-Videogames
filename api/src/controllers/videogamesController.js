@@ -17,6 +17,8 @@ const getAllVg = async () => {
             }
         }
     });
+
+    
    const array = arrayGamesDb.map(game => {
         return {
             id: game.id,
@@ -170,7 +172,7 @@ const createNewGame = async ({ name, description, platform, background_image, re
         }
     });
     //Verificar si la tabla de generos esta vacia
-    if (getGenreDB.length === 0) throw Error('La tabla de generos esta vacia!')
+    if (getGenreDB.length === 0) throw Error('Los generos no se cargaron correctamente!')
     //Guerdar nuevo juego en la DB
     let newVideogame = await Videogame.create({
         name,
