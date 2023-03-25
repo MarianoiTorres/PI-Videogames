@@ -8,7 +8,7 @@ const { API_KEY } = process.env;
 const getAllVg = async () => {
 
     // traigo los juegos de la db (incluyendo su relacion)
-    const arrayGamesDb = await Videogame.findAll({
+    const gamesDb = await Videogame.findAll({
         include: {
             model: Genre,
             attributes: ["name"],
@@ -18,7 +18,7 @@ const getAllVg = async () => {
         }
     });
     // mapeo lo que llego de la db
-    const array = arrayGamesDb.map(game => {
+    const arrayGamesDB = gamesDb.map(game => {
         return {
             id: game.id,
             name: game.name,
@@ -49,7 +49,7 @@ const getAllVg = async () => {
         });
     };
     // concateno lo de la db y la api
-    return [...array, ...arrayGamesApi];
+    return [...arrayGamesDB, ...arrayGamesApi];
 }
 
 //-------Traer los juegos por su nombre---------
@@ -88,7 +88,7 @@ const getVgByName = async (name) => {
                 arrayGamesApi.push({
                     id: game.id,
                     name: game.name,
-                    platform: game.platforms.map(e => e.platform.name), // LO MISMO DE ARRIBA
+                    platform: game.platforms.map(e => e.platform.name),
                     background_image: game.background_image,
                     released: game.released,
                     rating: game.rating,
@@ -98,8 +98,8 @@ const getVgByName = async (name) => {
         };
 
         arrayGamesApi = arrayGamesApi.filter(g => g.name.toLowerCase() || g.name.toUpperCase())
-
-        let allGamesByName = [...arrayGamesDB, ...arrayGamesApi].slice(0, 15)  // ----- API +  DB
+        
+        let allGamesByName = [...arrayGamesDB, ...arrayGamesApi].slice(0, 15)  // -----> API +  DB
         return allGamesByName;
     } catch (error) {
         throw Error('El juego ingresado no existe')

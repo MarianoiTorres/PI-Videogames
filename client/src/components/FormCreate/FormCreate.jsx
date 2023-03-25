@@ -33,7 +33,7 @@ const FormCreate = () => {
         })
         // valida que no haya errores en cada cambio del input
         setErrors({
-            ...errors,
+            ...errors,          // ====> AAA
             [event.target.name]: validation({ [event.target.name]: event.target.value })
         })
     }
@@ -53,7 +53,6 @@ const FormCreate = () => {
             })
         }
     }
-
 
     const genres = useSelector(state => state.genres)
     const platforms = useSelector(state => state.platforms)

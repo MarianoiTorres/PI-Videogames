@@ -17,7 +17,8 @@ const initialState = {
     gameDetail: [],
     genres: [],
     platforms: [],
-    errors: ''
+    errors: '',
+    ApiOrDb: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -33,7 +34,8 @@ const reducer = (state = initialState, action) => {
         case GET_GAME_BY_NAME:
             return {
                 ...state,
-                allGames: action.payload
+                allGames: action.payload,
+                allGamesToFilter: action.payload
             }
         //Traer un juego especifico (detailCard)
         case GET_GAME_BY_ID:
@@ -51,7 +53,12 @@ const reducer = (state = initialState, action) => {
         case GET_GENRES_FILTERED:
             return {
                 ...state,
-                allGames: [...state.allGamesToFilter.filter(game => game.genres.includes(action.payload))]
+                allGames: 
+                state.ApiOrDb === '' 
+                ? [...state.allGamesToFilter.filter(game => game.genres.includes(action.payload))]
+                : state.ApiOrDb === 'API' 
+                ? [...state.allGamesToFilter.filter(game => !isNaN(game.id) && game.genres.includes(action.payload))] 
+                : [...state.allGamesToFilter.filter(game => isNaN(game.id) && game.genres.includes(action.payload))]
             }
         // Ordenar por rating
         case GET_GAMES_ORDER_RATING:
@@ -86,20 +93,17 @@ const reducer = (state = initialState, action) => {
             if (action.payload === 'API') {
                 return {
                     ...state,
+                    ApiOrDb: 'API',
                     allGames: [...state.allGamesToFilter.filter(game => !isNaN(game.id))]
                 }
             } else if (action.payload === 'DB') {
                 return {
                     ...state,
+                    ApiOrDb: 'DB',
                     allGames: [...state.allGamesToFilter.filter(game => isNaN(game.id))]
                 }
             }
-            else {
-                return {
-                    ...state,
-                    allGames: state.allGamesToFilter.map(g => g)
-                }
-            }
+            
         // Llenar el estado global de plataformas
         case GET_PLATFORMS:
             let platforms = []

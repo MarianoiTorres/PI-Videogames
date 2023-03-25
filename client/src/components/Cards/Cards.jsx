@@ -34,7 +34,7 @@ const Cards = () => {
             setCurrentPage(currentPage + 1)
         }
     }
-
+    
     return (
         <div className={style.container}>
             <div className={style.cardsContainer}>

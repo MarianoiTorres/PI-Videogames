@@ -8,7 +8,7 @@ export default function SearchBar() {
     const [game, setGame] = useState('')
 
     const onChangeHandler = (event) => {
-        setGame(event.target.value)
+        setGame(event.target.value) 
     }
 
     const functions = () => {
