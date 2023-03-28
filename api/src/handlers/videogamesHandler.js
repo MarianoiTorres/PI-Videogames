@@ -1,4 +1,4 @@
-const { getVg, getVgById, createVg } = require('../controllers/videogamesController')
+const { getVg, getVgById, createVg} = require('../controllers/videogamesController')
 
 //traer todos los juegos o traerlos por sus nombres
 const getVideogames = async (req, res) => {
@@ -34,8 +34,10 @@ const postVideogame = async (req, res) => {
     }
 }
 
+
+
 module.exports = {
     getVideogames,
     getVideogameById,
-    postVideogame
+    postVideogame,
 }

@@ -1,10 +1,13 @@
 import style from './Card.module.css'
 import { NavLink } from 'react-router-dom'
 import star from '../../img/star.png'
+import { useState } from 'react'
+
 
 const Card = ({ id, name, image, genres, rating }) => {
+
     return (
-        <div className={style.containerCard}>
+        <div key={id} className={style.containerCard}>
             <div className={style.containerStar}>
                 <h2 className={style.rating}>{rating}</h2>
                 <img className={style.star} src={star} />

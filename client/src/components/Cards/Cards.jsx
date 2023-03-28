@@ -34,7 +34,11 @@ const Cards = () => {
             setCurrentPage(currentPage + 1)
         }
     }
-    
+
+    useEffect(() => {
+            setCurrentPage(1)
+    }, [allGames])
+
     return (
         <div className={style.container}>
             <div className={style.cardsContainer}>

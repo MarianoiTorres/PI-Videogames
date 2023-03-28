@@ -8,7 +8,7 @@ import {
     GET_GENRES_FILTERED,
     GET_GAMES_FROM_API_OR_DB,
     GET_PLATFORMS,
-    FETCHED_ERRORS
+    FETCHED_ERRORS,
 } from "./actionsTypes"
 
 const initialState = {
@@ -18,7 +18,7 @@ const initialState = {
     genres: [],
     platforms: [],
     errors: '',
-    ApiOrDb: ''
+    ApiOrDb: '',
 }
 
 const reducer = (state = initialState, action) => {
@@ -103,7 +103,15 @@ const reducer = (state = initialState, action) => {
                     allGames: [...state.allGamesToFilter.filter(game => isNaN(game.id))]
                 }
             }
-            
+            else
+            {
+                return{
+                    ...state,
+                    ApiOrDb: '',
+                    allGames: [...state.allGamesToFilter]
+                }
+            }
+
         // Llenar el estado global de plataformas
         case GET_PLATFORMS:
             let platforms = []
@@ -128,7 +136,6 @@ const reducer = (state = initialState, action) => {
 
         default: return { ...state }
     }
-
 
 }
 

@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
@@ -13,14 +14,21 @@ const DetailGame = () => {
     useEffect(() => {
         dispatch(getGameById(idVideogame))
     }, [idVideogame])
-
     const gameDetail = useSelector(state => state.gameDetail)
+    
     return (
         <div className={style.container}>
             <div className={style.containerDetail}>
+                
+                <div className={style.contLoading}>
+                {typeof gameDetail[0] === 'undefined'
+                ? <h1 className={style.loading}>CARGANDO...</h1>
+                : gameDetail[0].id != idVideogame && <h1 className={style.loading}>CARGANDO...</h1>}
+                </div>
+
                 {
                     gameDetail.map(game => {
-                        return (
+                        return gameDetail[0].id == idVideogame && (
                             <div className={style.detail}>
                                 <div className={style.imagen}>
                                     <img className={style.image} src={game.background_image} alt={game.name} />

@@ -22,18 +22,8 @@ const FilterButtons = () => {
         dispatch(getGamesOrderAlphabetic(event.target.value))
     }
     // functiones de api o db
-    const functionOptions = (event) => {
-
-        if(event.target.value === 'ALL')
-        {
-            // si se selecciona la opcion ALL trae todos los juegos 
-            dispatch(getAllGames())
-        }
-        else
-        {
-            // si se selecciona cualquier otra opcion se traen los juegos de la db o la api
-            dispatch(getGamesFromApiOrDb(event.target.value))
-        }
+    const filterByOrigin = (event) => {
+        dispatch(getGamesFromApiOrDb(event.target.value))
     }
 
     return (
@@ -50,12 +40,15 @@ const FilterButtons = () => {
                 </select>
             </div>
             <div>
-                <select className={style.selects} onChange={functionOptions}>
+                <select className={style.selects} onChange={filterByOrigin}>
                     <option select disabled selected={true}>Origin</option>
                     <option value="ALL">All games</option>
                     <option value="API">From API</option>
                     <option value="DB">Created by user</option>
                 </select>
+            </div>
+            <div>
+                <button className={style.selects} onClick={() => dispatch(getAllGames())}>Restart</button>
             </div>
             <div>
                 <select className={style.selects} onChange={gameOrderRating}>

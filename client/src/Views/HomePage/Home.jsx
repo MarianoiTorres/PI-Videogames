@@ -10,8 +10,8 @@ const Home = (props) => {
                 <h2 className={style.h2}>Filter by:</h2>
                 <h2 className={style.h2}>Order by:</h2>
             </div>
-            <FilterButtons allGenres={props.allGenres} />
-            <Cards allGames={props.allGames} />
+            <FilterButtons/>
+            <Cards/>
         </div>
     )
 }

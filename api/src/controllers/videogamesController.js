@@ -215,8 +215,9 @@ const createVg = (form) => {
     return createNewGame(form) // Crear juego
 }
 
+
 module.exports = {
     getVg,
     getVgById,
-    createVg
+    createVg,
 }

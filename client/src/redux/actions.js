@@ -9,7 +9,7 @@ import {
     GET_GAMES_ORDER_ALPHABETIC,
     GET_GAMES_FROM_API_OR_DB,
     GET_PLATFORMS,
-    FETCHED_ERRORS
+    FETCHED_ERRORS,
 } from "./actionsTypes";
 
 // action traer todos los juegos

@@ -20,16 +20,13 @@ function App() {
     dispatch(getGenres())
   }, [])
 
-  const allGames = useSelector(state => state.allGames)
-  const allGenres = useSelector(state => state.genres)
-
   return (
     <div className="App">
       {
         location.pathname !== '/' && <NavBar />
       }
       <Route exact path='/' render={() => <Landing />} />
-      <Route path='/home' render={() => <Home allGames={allGames} allGenres={allGenres} />} />
+      <Route path='/home' render={() => <Home />} />
       <Route path='/form' render={() => <Form />} />
       <Route path='/detail/:idVideogame' render={() => <Detail />} />
     </div>
