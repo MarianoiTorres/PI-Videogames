@@ -16,7 +16,7 @@ import {
 export const getAllGames = () => {
     try {
         return async (dispatch) => {
-            const response = await axios.get('http://localhost:3001/videogames')
+            const response = await axios.get('/videogames')
             const data = response.data
             return dispatch({ type: GET_ALL_GAMES, payload: data })
         }
@@ -28,7 +28,7 @@ export const getAllGames = () => {
 // action traer juegos por nombres
 export const getGameByName = (name) => async(dispatch) => {
     try {
-        const response = await axios.get(`http://localhost:3001/videogames?name=${name}`)
+        const response = await axios.get(`/videogames?name=${name}`)
         const data = response.data
         return dispatch({ type: GET_GAME_BY_NAME, payload: data })
     } catch (error) {
@@ -40,7 +40,7 @@ export const getGameByName = (name) => async(dispatch) => {
 export const getGameById = (idVideogame) => {
     try {
         return async (dispatch) => {
-            const response = await axios.get(`http://localhost:3001/videogames/${idVideogame}`)
+            const response = await axios.get(`/videogames/${idVideogame}`)
             const data = response.data
             return dispatch({ type: GET_GAME_BY_ID, payload: data })
         }
@@ -53,7 +53,7 @@ export const getGameById = (idVideogame) => {
 export const getGenres = () => {
     try {
         return async (dispatch) => {
-            const response = await axios.get('http://localhost:3001/genres')
+            const response = await axios.get('/genres')
             const data = response.data
             return dispatch({ type: GET_GENRES, payload: data })
         }
