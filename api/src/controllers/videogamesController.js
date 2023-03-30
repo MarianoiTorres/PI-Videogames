@@ -33,7 +33,7 @@ const getAllVg = async () => {
 
     // traigo los juegos de la api
     const arrayGamesApi = [];
-    for (let i = 1; i <= 2; i++) {
+    for (let i = 1; i <= 7; i++) {
         let response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`);
         // mapeo y pusheo cada juego
         response.data.results.map(game => {
@@ -171,7 +171,7 @@ const createNewGame = async ({ name, description, platform, background_image, re
         where: { name: name }
     })
     // Lanzar error en caso de que ya exista
-    if (searchName.length !== 0) throw Error('Este juego ya existe!');
+    if (searchName.length !== 0) throw Error('Este juego ya existe!')
 
     // busca y trae de la tabla genre los generos = genre
     let getGenreDB = await Genre.findAll({

@@ -1,4 +1,4 @@
-import { getAllGames, getGamesFromApiOrDb, getGamesOrderAlphabetic, getGamesOrderRating, getGenres, getGenresFiltered } from "../../redux/actions"
+import { getAllGames, getGamesFromApiOrDb, getGamesOrderAlphabetic, getGamesOrderRating, getGenresFiltered } from "../../redux/actions"
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from "react"
 import style from './FilterButtons.module.css'
@@ -28,7 +28,6 @@ const FilterButtons = () => {
 
     return (
         <div className={style.container}>
-
             <div>
                 <select className={style.selects} onChange={filterByGenre}>
                     <option select disabled selected={true}>Genres</option>

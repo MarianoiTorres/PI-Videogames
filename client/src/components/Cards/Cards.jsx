@@ -12,7 +12,7 @@ const Cards = () => {
     const [gamesPerPage, setGamesPerPage] = useState(15)
     const indexOfLastGame = currentPage * gamesPerPage
     const indexOfFirstGame = indexOfLastGame - gamesPerPage
-    const currentGames = allGames.slice(indexOfFirstGame, indexOfLastGame)
+    const currentGames = allGames.slice(indexOfFirstGame, indexOfLastGame) 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
@@ -30,7 +30,7 @@ const Cards = () => {
             setCurrentPage(currentPage - 1)
         }
         else {
-            if (currentPage + 1 === pageNumbers.length + 1) return
+            if (currentPage === pageNumbers.length) return
             setCurrentPage(currentPage + 1)
         }
     }

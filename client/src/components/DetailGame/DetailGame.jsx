@@ -22,7 +22,7 @@ const DetailGame = () => {
                 
                 <div className={style.contLoading}>
                 {typeof gameDetail[0] === 'undefined'
-                ? <h1 className={style.loading}>CARGANDO...</h1>
+                ? <h1 className={style.loading}>LOADING...</h1>
                 : gameDetail[0].id != idVideogame && <h1 className={style.loading}>CARGANDO...</h1>}
                 </div>
 

@@ -190,10 +190,10 @@ const FormCreate = () => {
                     <div className={style.divs}>
                         <div>
                             <select className={style.selects} name='genre' onChange={genresAndPlatformsHandler}>
-                                <option select disabled selected>Genres</option>
+                            <option select disabled selected>Genres</option>
                                 {
                                     genres.map(genre => {
-                                        return <option key={genre} name={genre} value={genre} >{genre}</option>
+                                        return <option key={genre} name={genre} value={genre} >{genre}</option> 
                                     })
                                 }
                             </select>
@@ -209,8 +209,9 @@ const FormCreate = () => {
                         <label>Genres: </label>
                     </div>
 
-                    <div>
+                    <div className={style.divSubmit}>
                         <button className={style.create} type='submit' name='submit'>CREATE</button>
+                        {errorsBack !== null && <div className={style.indicador}>↑</div>}
                     </div>
 
                 </form>
