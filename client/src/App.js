@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllGames, getGenres } from './redux/actions';
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:3001/'
+axios.defaults.baseURL = 'https://pi-videogames-production-870e.up.railway.app/'
 
 function App() {
 
