@@ -72,7 +72,7 @@ const FormCreate = () => {
         })
         // si es = 0 es porque no hay ningun error
         if (err.length === 0) {
-            axios.post('http://localhost:3001/videogames', form)
+            axios.post('/videogames', form)
                 .then(res => {
                     alert('Juego creado con exito :D')
                     setForm({
